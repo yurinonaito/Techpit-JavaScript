@@ -47,9 +47,24 @@ document.querySelector('#seat').innerHTML = insertHTML;
 
 }
 
-shuffleArray();
-showSeatBoxes();
+// shuffleArray();
+// showSeatBoxes();
 
 // 関数();: 定義した関数を実行。
 // shuffleArray関数 → 配列の中身をシャッフルすることを目的としている関数
 // showSeatBoxes関数 → 配列形式のデータを使って画面上に席番号ボックスを表示させることを目的としている関数
+
+// setInterval(function(){
+const timer = setInterval(function(){
+    shuffleArray();
+    showSeatBoxes();
+    clearInterval(timer);
+  }, 50);
+
+// setInterval()を使うとタイマー処理によるプログラムの繰り返し処理を行う。
+// setInterval('繰り返す命令の内容', 'タイマー処理を行う時間の間隔')
+//「タイマー処理を行う時間の間隔」には、時間の数値を当てはめる。（1000 = 1秒）（50 = 0.05秒）
+
+// clearInterval()は「setIntervalによるタイマー処理を停止する」という役割を持つ命令。
+// clearInterval('setIntervalが保存されている変数（定数）名');
+// setIntervalの内側でclearInterval()を用意し、()の中にsetIntervalが代入・保存された定数timerを指定することで動くようになる！
