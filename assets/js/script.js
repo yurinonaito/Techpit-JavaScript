@@ -1,3 +1,4 @@
+let timer;
 const studentNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 
 
@@ -54,12 +55,27 @@ document.querySelector('#seat').innerHTML = insertHTML;
 // shuffleArray関数 → 配列の中身をシャッフルすることを目的としている関数
 // showSeatBoxes関数 → 配列形式のデータを使って画面上に席番号ボックスを表示させることを目的としている関数
 
+const soundPlay = function(){
+    const audioElement = new Audio();
+    audioElement.src = 'assets/audio/drum.mp3';
+    audioElement.play();
+
+    audioElement.addEventListener('ended', function(){
+        clearInterval(timer);
+      })
+  }
+  
+ 
+  document.querySelector('#btn-start').addEventListener('click', function(){
+
 // setInterval(function(){
-const timer = setInterval(function(){
+    // const timer = setInterval(function(){
+    timer = setInterval(function(){
     shuffleArray();
     showSeatBoxes();
-    clearInterval(timer);
+    // clearInterval(timer);
   }, 50);
+
 
 // setInterval()を使うとタイマー処理によるプログラムの繰り返し処理を行う。
 // setInterval('繰り返す命令の内容', 'タイマー処理を行う時間の間隔')
@@ -68,3 +84,6 @@ const timer = setInterval(function(){
 // clearInterval()は「setIntervalによるタイマー処理を停止する」という役割を持つ命令。
 // clearInterval('setIntervalが保存されている変数（定数）名');
 // setIntervalの内側でclearInterval()を用意し、()の中にsetIntervalが代入・保存された定数timerを指定することで動くようになる！
+
+soundPlay();
+});
