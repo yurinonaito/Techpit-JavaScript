@@ -65,7 +65,8 @@ const soundPlay = function(){
       })
   }
   
- 
+ /*
+
   document.querySelector('#btn-start').addEventListener('click', function(){
 
 // setInterval(function(){
@@ -87,3 +88,5 @@ const soundPlay = function(){
 
 soundPlay();
 });
+
+/*
