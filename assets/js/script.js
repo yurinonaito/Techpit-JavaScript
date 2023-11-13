@@ -65,9 +65,10 @@ const soundPlay = function(){
       })
   }
   
- /*
+
 
   document.querySelector('#btn-start').addEventListener('click', function(){
+    document.querySelector('.c-overlay').classList.add("is-closed");
 
 // setInterval(function(){
     // const timer = setInterval(function(){
@@ -88,5 +89,3 @@ const soundPlay = function(){
 
 soundPlay();
 });
-
-/*
