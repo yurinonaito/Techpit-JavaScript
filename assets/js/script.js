@@ -1,6 +1,7 @@
 let timer;
 // const studentNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
-const studentNumberList = [];
+// const studentNumberList = [];
+let studentNumberList = [];
 
 // const setTargetStudents = function(){
 const setTargetStudents = function(studentNumber){
@@ -8,6 +9,13 @@ const setTargetStudents = function(studentNumber){
     　for(let i = 1; i <= studentNumber;i++){
        studentNumberList.push(i);
      }
+     const absenteeNumbers = document.querySelector("#absence").value;
+     const splitedAbsenteeNumbers = absenteeNumbers.split(",").map(function(item, index){
+        return parseInt(item);
+      });
+      studentNumberList = studentNumberList.filter(function(student){
+        return !splitedAbsenteeNumbers.includes(student);
+      })
     }
 
 // let insertHTML = '';の'';というのは空文字と呼ばれるもの。変数insertHTMLはとくに何もデータは入っておらず空っぽだがこの後文字情報が追加されることになることを示す。
