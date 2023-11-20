@@ -67,6 +67,7 @@ studentNumberList.forEach(function(num){
 // studentNumbersという配列内の各要素を<div class="seat__item">というHTML要素に変換し、それをinsertHTMLに追加する。
 
 
+
 document.querySelector('#seat').innerHTML = insertHTML;
 
 // JavaScriptの基本的な書き方　document.querySelector('この部分にid名（#id名）やclass名(.class名)などを指定して、操作したいHTMLを決定する')
@@ -94,6 +95,16 @@ const soundPlay = function(){
 
   document.querySelector('#btn-start').addEventListener('click', function(){
     const studentNumber = document.querySelector("#studentNumber").value;
+
+    if(studentNumber === "" ){
+      alert('人数が未入力です！入力してからスタートボタンを押してください。');
+      return false;
+    }
+   
+    if(studentNumber > 50){
+      alert('人数は50人以内に設定してください！');
+      return false;
+    }
 
     document.querySelector('.c-overlay').classList.add("is-closed");  
 
