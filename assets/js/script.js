@@ -6,7 +6,7 @@ let studentNumberList = [];
 // const setTargetStudents = function(){
 const setTargetStudents = function(studentNumber){
 
-    　for(let i = 1; i <= studentNumber;i++){
+    for(let i = 1; i <= studentNumber;i++){
        studentNumberList.push(i);
      }
      const absenteeNumbers = document.querySelector("#absence").value;
@@ -56,17 +56,11 @@ const shuffleArray = function(){
     }
   }
 
-const showSeatBoxes = function(){
-let insertHTML = ''; 
-
-// studentNumbers.forEach(function(num){
-studentNumberList.forEach(function(num){
-    insertHTML += '<div class="seat__item">' + num + '</div>';
+const showSeatBoxes = function(shuffleStudent){
+  let insertHTML = '';
+  shuffleStudent.forEach(function(num){
+    insertHTML += `<div class="seat__item">${num}</div>`
   })
-
-// studentNumbersという配列内の各要素を<div class="seat__item">というHTML要素に変換し、それをinsertHTMLに追加する。
-
-
 
 document.querySelector('#seat').innerHTML = insertHTML;
 
@@ -95,14 +89,17 @@ const soundPlay = function(){
 
   document.querySelector('#btn-start').addEventListener('click', function(){
     const studentNumber = document.querySelector("#studentNumber").value;
+    const studentUpperlimit = 50;
+    const studentNumberIsEmpty = studentNumber === "";
 
-    if(studentNumber === "" ){
+    if(studentNumberIsEmpty){
       alert('人数が未入力です！入力してからスタートボタンを押してください。');
       return false;
     }
    
-    if(studentNumber > 50){
-      alert('人数は50人以内に設定してください！');
+    
+    if(studentNumber > studentUpperlimit){
+      alert(`人数は${studentUpperlimit}人以内に設定してください！`);
       return false;
     }
 
