@@ -1,10 +1,10 @@
-let timer;
+// let timer;
 // const studentNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 // const studentNumberList = [];
-let studentNumberList = [];
 
 // const setTargetStudents = function(){
 const setTargetStudents = function(studentNumber){
+  let studentNumberList = [];
 
     for(let i = 1; i <= studentNumber;i++){
        studentNumberList.push(i);
@@ -16,6 +16,7 @@ const setTargetStudents = function(studentNumber){
       studentNumberList = studentNumberList.filter(function(student){
         return !splitedAbsenteeNumbers.includes(student);
       })
+      return studentNumberList;
     }
 
 // let insertHTML = '';の'';というのは空文字と呼ばれるもの。変数insertHTMLはとくに何もデータは入っておらず空っぽだがこの後文字情報が追加されることになることを示す。
@@ -47,18 +48,22 @@ const setTargetStudents = function(studentNumber){
 // studentNumbers[i - 1] = studentNumbers[randomNum];: i-1番目の要素を、ランダムに選ばれたrandomNum番目の要素と交換。
 // studentNumbers[randomNum] = tmp;: randomNum番目の要素を、最初に選択したi-1番目の要素で置き換える。配列内の要素をランダムに並び替え。
 
-const shuffleArray = function(){
+
+
+ const shuffleArray = function(studentNumberList){
     for(let i = studentNumberList.length; i > 0; i--){
       const randomNum = Math.floor(Math.random() * i);
       let tmp = studentNumberList[i - 1];
       studentNumberList[i - 1] = studentNumberList[randomNum];
       studentNumberList[randomNum] = tmp;
     }
+    return studentNumberList;
   }
 
 const showSeatBoxes = function(shuffleStudent){
   let insertHTML = '';
   shuffleStudent.forEach(function(num){
+
     insertHTML += `<div class="seat__item">${num}</div>`
   })
 
@@ -75,7 +80,7 @@ document.querySelector('#seat').innerHTML = insertHTML;
 // shuffleArray関数 → 配列の中身をシャッフルすることを目的としている関数
 // showSeatBoxes関数 → 配列形式のデータを使って画面上に席番号ボックスを表示させることを目的としている関数
 
-const soundPlay = function(){
+const soundPlay = function(timer){
     const audioElement = new Audio();
     audioElement.src = 'assets/audio/drum.mp3';
     audioElement.play();
@@ -106,7 +111,7 @@ const soundPlay = function(){
     document.querySelector('.c-overlay').classList.add("is-closed");  
 
     // setTargetStudents();
-    setTargetStudents(studentNumber);
+    const studentNumberList = setTargetStudents(studentNumber);
     // for(let i = 1; i <= studentNumber;i++){
     //     studentNumberList.push(i);
     //     }
@@ -115,9 +120,9 @@ const soundPlay = function(){
 
 // setInterval(function(){
     // const timer = setInterval(function(){
-    timer = setInterval(function(){
-    shuffleArray();
-    showSeatBoxes();
+      const timer = setInterval(function(){
+      const shuffleStudent = shuffleArray(studentNumberList);
+      showSeatBoxes(shuffleStudent);
     // clearInterval(timer);
   }, 50);
 
@@ -130,5 +135,5 @@ const soundPlay = function(){
 // clearInterval('setIntervalが保存されている変数（定数）名');
 // setIntervalの内側でclearInterval()を用意し、()の中にsetIntervalが代入・保存された定数timerを指定することで動くようになる！
 
-soundPlay();
+soundPlay(timer);
 });
