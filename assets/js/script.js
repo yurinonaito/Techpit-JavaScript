@@ -1,9 +1,4 @@
-// let timer;
-// const studentNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
-// const studentNumberList = [];
-
-// const setTargetStudents = function(){
-const setTargetStudents = function(studentNumber){
+const setTargetStudents = (studentNumber)=>{
   let studentNumberList = [];
 
     for(let i = 1; i <= studentNumber;i++){
@@ -13,7 +8,7 @@ const setTargetStudents = function(studentNumber){
      const splitedAbsenteeNumbers = absenteeNumbers.split(",").map(function(item, index){
         return parseInt(item);
       });
-      studentNumberList = studentNumberList.filter(function(student){
+      studentNumberList = studentNumberList.filter((student)=>{
         return !splitedAbsenteeNumbers.includes(student);
       })
       return studentNumberList;
@@ -32,25 +27,9 @@ const setTargetStudents = function(studentNumber){
 // i++は「1ずつ足し算をして数字を増やしていく」という意味を表すプログラム
 // += は、すでに設定・保存されているデータに加えて+= の右側にあるものをさらに加えるという意味。データとデータの足し算になる。
 
-// const shuffleArray = function(){
-
-// for(let i = 18; i > 0; i--){
-//     const randomNum = Math.floor(Math.random() * i);
-//     let tmp = studentNumbers[i - 1]; 
-//     studentNumbers[i - 1] = studentNumbers[randomNum]; 
-//     studentNumbers[randomNum] = tmp;
-//   }
-// }
-
-// for(let i = 18; i > 0; i--) { ... }: iを18から始め、それを1ずつ減らしながらループを続けるforループ。配列内の要素をシャッフルするための処理を行う。
-// const randomNum = Math.floor(Math.random() * i);: Math.random()で0から1未満の乱数を生成し、iで乗算して小数点以下を切り捨てるMath.floor()関数を使って整数に変換。0からi-1の範囲でランダムな数が取得される。
-// let tmp = studentNumbers[i - 1];: 一時的な変数tmpに、studentNumbers配列内のi-1番目の要素を格納。
-// studentNumbers[i - 1] = studentNumbers[randomNum];: i-1番目の要素を、ランダムに選ばれたrandomNum番目の要素と交換。
-// studentNumbers[randomNum] = tmp;: randomNum番目の要素を、最初に選択したi-1番目の要素で置き換える。配列内の要素をランダムに並び替え。
 
 
-
- const shuffleArray = function(studentNumberList){
+const shuffleArray = (studentNumberList)=>{
     for(let i = studentNumberList.length; i > 0; i--){
       const randomNum = Math.floor(Math.random() * i);
       let tmp = studentNumberList[i - 1];
@@ -60,7 +39,7 @@ const setTargetStudents = function(studentNumber){
     return studentNumberList;
   }
 
-const showSeatBoxes = function(shuffleStudent){
+const showSeatBoxes = (shuffleStudent)=>{
   let insertHTML = '';
   shuffleStudent.forEach(function(num){
 
@@ -80,7 +59,7 @@ document.querySelector('#seat').innerHTML = insertHTML;
 // shuffleArray関数 → 配列の中身をシャッフルすることを目的としている関数
 // showSeatBoxes関数 → 配列形式のデータを使って画面上に席番号ボックスを表示させることを目的としている関数
 
-const soundPlay = function(timer){
+const soundPlay = (timer)=>{
     const audioElement = new Audio();
     audioElement.src = 'assets/audio/drum.mp3';
     audioElement.play();
@@ -110,17 +89,12 @@ const soundPlay = function(timer){
 
     document.querySelector('.c-overlay').classList.add("is-closed");  
 
-    // setTargetStudents();
     const studentNumberList = setTargetStudents(studentNumber);
-    // for(let i = 1; i <= studentNumber;i++){
-    //     studentNumberList.push(i);
-    //     }
 
 
 
-// setInterval(function(){
-    // const timer = setInterval(function(){
-      const timer = setInterval(function(){
+
+    const timer = setInterval(()=>{
       const shuffleStudent = shuffleArray(studentNumberList);
       showSeatBoxes(shuffleStudent);
     // clearInterval(timer);
